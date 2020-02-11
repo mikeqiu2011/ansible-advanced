@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  master:
+    build: .
+    image: mikeqiu2011/ansible:1
+    volumes:
+      - ./playbook:/playbook
+    networks:
+      - ansible-network
+
+  target1:
+    image: mmumshad/ubuntu-ssh-enabled
+    networks:
+      - ansible-network
+
+  target2:
+    image: mmumshad/ubuntu-ssh-enabled
+    networks:
+      - ansible-network
+
+  target3:
+    image: mmumshad/ubuntu-ssh-enabled
+    networks:
+      - ansible-network
+
+networks:
+  ansible-network:
+    driver: bridge
